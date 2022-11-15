@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="witdth=device-width, initial-scale=1">
+        <title>Projet Fréquence Cardiaque</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    </head>
+    <body>
+        <nav class="navbar is-dark">
+            <div class="navbar-brand is-size-3">
+                <!--a href="{% url 'mainScreen' %}" class="navbar-item">Projet Fréquence Cardiaque</a-->
+                <a href="{% url 'firstScreenSetup' %}" class="navbar-item">Réglage de l'objectif</a>
+            </div>
+
+            {% if maindatabaseallentries %}
+                <div class="navbar-menu">
+                    <div class="navbar-end pt-2 pr-2">
+                        <a href="{% url 'delete_eleve' %}" class="button is-danger">Réinitialiser</a>
+                    </div>
+                </div>
+            {% endif %}
+        </nav>
+
+        <section class="section">
+            <div class="columns">
+                <div class="column is-2">
+                    <aside class="menu">
+                        <p class="menu-label">Noms</p>
+
+                        <ul class="menu-list">
+                            {% for element in maindatabaseallentries %}
+                                <li>
+                                    <a href="{% url 'mainScreen' %}?nomid={{ element.id }}">{{ element.nom }}</a>
+                                    <!--a>{{ element.nom }}</a-->
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </aside>
+                </div>
+
+                <div class="column is-2">
+                    <aside class="menu">
+                        <p class="menu-label">Fréquences cardiaques</p>
+
+                        <ul class="menu-list">
+                            {% for element in maindatabaseallentries %}
+                                <li>
+                                    <a href="{% url 'mainScreen' %}?nomid={{ element.id }}">{{ element.freqCard }}</a>
+                                    <!--a>{{ element.freqCard }}</a-->
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </aside>
+                </div>
+
+                <div class="column is-2">
+                    <form method="post" action="{% url 'mainScreen' %}?nomid={{ element.id }}">
+                        {% csrf_token %}
+
+                        <input type="hidden" name="nomid" value="{{ nomid }}">
+
+                        <div class="field">
+                            <label classe="label">Nom</label>
+                        </div>
+
+                        <div class="control">
+                            <input type="text" class="input" name="nom" placeholder="Nom de l'élève"{% if enregistrement %} value="{{ enregistrement.nom }}"{% endif %}>
+                            <!--input type="text" class="input" name="nom" placeholder="Nom de l'élève"-->
+                        </div>
+
+                        <div class="field">
+                            <label classe="label">Fréquence cardiaque</label>
+
+                            <div class="control">
+                                <input type="number" class="input" name="freqCard" placeholder="Fréquence cardiaque"{% if enregistrement %} value="{{ enregistrement.freqCard }}"{% endif %}>
+                                <!--input type="number" class="input" name="freqCard" placeholder="Fréquence cardiaque"-->
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-primary">Valider</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="column is-2">
+                    <p class="menu-label">Objectif</p>
+                    <div>
+                        <p class="menu-item">{{fc_counter}} / {{fc_target}}</p>
+                    </div>
+                </div>
+
+                <div class="column is-3">
+                    {% if fc_counter <  fc_target %}
+                        <button class="button is-danger is-large"disabled>Obtenir l'indice</button>
+                    {% else %}
+                        <!--button class="button is-primary is-large is-disabled">Obtenir l'indice</button-->
+                        <a href="{% url 'resultScreen' %}" class="button is-primary is-large">Obtenir l'indice</a>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

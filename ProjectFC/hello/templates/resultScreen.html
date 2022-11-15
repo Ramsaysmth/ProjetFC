@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="witdth=device-width, initial-scale=1">
+        <title>Projet Fréquence Cardiaque</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    </head>
+    <body>
+        <nav class="navbar is-link">
+            <div class="navbar-brand is-size-3">
+                <a href="{% url 'firstScreenSetup' %}" class="navbar-item">Réglage de l'objectif</a>
+                <a href="{% url 'mainScreen' %}" class="navbar-item">Retour</a>
+            </div>
+        </nav>
+
+        <section>
+            <div class="column is-mobile">
+                <div class="column is-half is-offset-one-quarter">
+                    <p class="menu-label is-size-5">Voici l'indice :</p>
+                    <p class="label is-size-2">{{phraseMystere}}</p>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

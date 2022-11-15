@@ -1,0 +1,6 @@
+env\Scripts\activate = activer l'environnement virtuel. "deactivate" pour quitter
+python manage.py runserver = Lancer le serveur
+python manage.py startapp 'nomapp' = créer une application
+python manage.py makemigrations app_name
+python manage.py migrate
+forcer commit

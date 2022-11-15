@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="witdth=device-width, initial-scale=1">
+            <title>Projet Fréquence Cardiaque</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    </head>
+    <body>
+        <nav class="navbar is-dark">
+            <div class="navbar-brand is-size-3">
+                <a href="{% url 'mainScreen' %}" class="navbar-item">Projet FC</a>
+            </div>
+
+            <div class="navbar-menu">
+                <div class="navbar-end pt-2 pr-2">
+                    <a href="{% url 'phraseScreenSetup' %}" class="button is-warning">Admin page</a>
+                </div>
+            </div>
+        </nav>
+
+    <section class="section">
+        <div class="columns is-mobile is-centered">
+            <div class="column is-one-quarter">
+                <form method="post" action="{% url 'firstScreenSetup' %}">
+                    {% csrf_token %}
+
+                    <div>
+                        <label classe=label">Saisir un objectif à atteindre</label>
+                    </div>
+
+                    <div class="control pt-3">
+                        <input type="number" class="input" name="freqCardTarget" placeholder="Fréquence cardiaque cible">
+                    </div>
+
+                    <div class="control pt-3">
+                        <button class="button is-primary">Valider</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    </body>
+</html>
