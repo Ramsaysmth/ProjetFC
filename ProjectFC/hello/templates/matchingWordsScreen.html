@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="witdth=device-width, initial-scale=1">
+            <title>Projet Fréquence Cardiaque</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+            {% load static %}
+            <link rel="stylesheet" href="{% static 'hello/style.css' %}">
+    </head>
+
+    <body>
+        <nav class="navbar is-dark">
+            <div class="navbar-brand is-size-3">
+                <a href="{% url 'lockedMenu' %}" class="navbar-item">Retour</a>
+            </div>
+        </nav>
+
+
+        <div class="section">
+
+            <h1 class="title is-4">Indique la bonne définition pour chaque texte</h1>
+
+            <div class="container">
+                <form method="post">
+
+                {% csrf_token %}
+                    {% for element1 in matchingwordsdbAllEntries %}
+                        <div class="row">
+                            <div class="texte">
+                                <p>{{ element1.texte }}</p>
+                            </div>
+
+                            <div class="liste">
+                                <select class="input" name="{{ element1.id }}">
+                                    {% for element2 in matchingwordsdbAllEntries %}
+                                        <option value="{{ element2.iDTexte }}">{{ element2.reponse }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <div class="columns is-centered">
+                        <div class="control pt-3">
+                            <button class="button is-primary">Valider</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </body>
+</html>

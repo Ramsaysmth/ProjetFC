@@ -14,3 +14,12 @@ class MainDataBase(models.Model):
 class ConfigDataBase(models.Model):
     freqCardTarget = models.IntegerField(blank=False, null=False, default=0)
     phraseMystere = models.CharField(max_length=150, default='')
+
+class passWordDB(models.Model):
+    passWord = models.CharField(max_length=30)
+
+class MatchingWordsDB(models.Model):
+    texte = models.CharField(max_length=300)
+    #yEnreg = models.CharField(max_length=1)
+    reponse = models.CharField(max_length=150, default='')
+    iDTexte = models.IntegerField(blank=False, null=False, default=0)

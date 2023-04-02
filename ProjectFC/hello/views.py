@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.db.models import Sum
-from hello.models import MainDataBase, ConfigDataBase
+from hello.models import MainDataBase, ConfigDataBase, passWordDB, MatchingWordsDB
 
 
 def firstScreenSetup(request):
@@ -122,3 +122,51 @@ def phraseScreenSetup(request):
     }
 
     return render(request, 'phraseScreenSetup.html', context)
+
+def matchingWordsScreen(request):
+
+    id_select = 0
+    screenToBeDisplayed = 'matchingWordsScreen.html'
+    matchingwordsdbAllEntries = MatchingWordsDB.objects.order_by('?')
+    listCodesToCheck = list()
+    listCodesUserEntryDropDown = list()
+
+    for texte in matchingwordsdbAllEntries:
+        listCodesToCheck.append(texte.iDTexte)
+    print("listCodesToCheck  =====", listCodesToCheck)
+
+    for reponse in matchingwordsdbAllEntries:
+        userEntryDropDown = request.POST.get(str(reponse.id), '')
+        try:
+            listCodesUserEntryDropDown.append(int(userEntryDropDown))
+        except:
+            pass
+
+    if listCodesToCheck == listCodesUserEntryDropDown:
+        screenToBeDisplayed = "successScreen.html"
+
+    context = {
+        'matchingwordsdbAllEntries': matchingwordsdbAllEntries,
+    }
+    print("context", context)
+
+    return render(request, screenToBeDisplayed, context)
+
+def mainMenu(request):
+
+  context = {}
+  return render(request, 'mainMenu.html', context)
+
+def lockedMenu(request):
+    passWord = getattr(passWordDB.objects.last(), 'passWord')
+    screenToBeDisplayed = 'lockedMenu.html'
+
+    if request.method == 'POST':
+        passWordEntry = request.POST.get('passWordEntry', '')
+        if passWordEntry == passWord:
+            screenToBeDisplayed = 'mainMenu.html'
+        else:
+            screenToBeDisplayed = 'lockedMenu.html'
+
+    context = {}
+    return render(request, screenToBeDisplayed, context)

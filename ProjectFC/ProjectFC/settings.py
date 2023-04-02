@@ -21,10 +21,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+#23/03/2023 - Temporaire - DEB
+#SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = r"zkIekrotPkjdd*78-"
+#23/03/2023 - Temporaire - FIN
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(int(os.environ.get('DEBUG', 0)))
+#23/03/2023 - Temporaire - DEB
+#DEBUG = bool(int(os.environ.get('DEBUG', 0)))
+DEBUG = True
+#23/03/2023 - Temporaire - FIN
 
 ALLOWED_HOSTS = []
 
@@ -125,6 +132,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
 
 
 # Default primary key field type

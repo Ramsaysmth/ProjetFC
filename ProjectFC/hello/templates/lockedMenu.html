@@ -8,28 +8,29 @@
     </head>
     <body>
         <nav class="navbar is-dark">
-            <div class="navbar-brand">
-                <a href="{% url 'mainMenu' %}" class="navbar-item is-size-3">Retour</a>
+            <div class="navbar-brand is-size-3">
+                <a href="{% url 'matchingWordsScreen' %}" class="navbar-item">Retour</a>
             </div>
         </nav>
 
     <section class="section">
         <div class="columns is-mobile is-centered">
             <div class="column is-one-quarter">
-                <form method="post" action="{% url 'phraseScreenSetup' %}">
+                <form method="post" action="{% url 'lockedMenu' %}">
                     {% csrf_token %}
 
                     <div>
-                        <label classe=label">Saisir l'indice à trouver</label>
+                        <label classe=label">Saisir le mot de passe</label>
                     </div>
 
                     <div class="control pt-3">
-                        <input type="text" class="input" name="phraseMystere" placeholder="Indice à trouver...">
+                        <input type="password" class="input" id="pass" name="passWordEntry" placeholder="Mot de passe">
                     </div>
 
                     <div class="control pt-3">
                         <button class="button is-primary">Valider</button>
                     </div>
+
                 </form>
             </div>
         </div>

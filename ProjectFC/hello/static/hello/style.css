@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    gap: 10px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.texte {
+    align-self: center;
+    width: 150%;
+    margin-left: 10px;
+}
+
+.liste {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+/*border: solid 3px purple;
+

@@ -16,17 +16,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from hello.views import firstScreenSetup, phraseScreenSetup, mainScreen, delete_eleve, resultScreen
+from hello.views import firstScreenSetup, phraseScreenSetup, mainScreen, delete_eleve, resultScreen, matchingWordsScreen, mainMenu, lockedMenu
 
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('', mainMenu, name='mainMenu'),
+    path('admin/', admin.site.urls, name='admin'),
     path('setupfc/', firstScreenSetup, name='firstScreenSetup'),
+    path('matchingword/', matchingWordsScreen, name='matchingWordsScreen'),
+    path('lockedMenu/', lockedMenu, name='lockedMenu'),
     path('setupphr/', phraseScreenSetup, name='phraseScreenSetup'),
-    path('', mainScreen, name='mainScreen'),
+    path('mainScreen/', mainScreen, name='mainScreen'),
     path('delete', delete_eleve, name='delete_eleve'),
     path('result/', resultScreen, name='resultScreen'),
-    path('admin/', admin.site.urls, name='admin'),
+
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
