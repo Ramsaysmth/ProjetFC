@@ -120,18 +120,16 @@ def phraseScreenSetup(request):
 
 def matchingWordsScreen(request):
 
-    id_select = 0
     screenToBeDisplayed = 'matchingWordsScreen.html'
     matchingwordsdbAllEntries = MatchingWordsDB.objects.order_by('?')
     matchingwordsdbAllEntries2 = MatchingWordsDB.objects.order_by('?')
     listCodesToCheck = list()
     listCodesUserEntryDropDown = list()
 
+    #Liste des identifiants textes et listes à vérifier
     for texte in matchingwordsdbAllEntries:
-        listCodesToCheck.append(texte.iDTexte)
-
-    for reponse in matchingwordsdbAllEntries:
-        userEntryDropDown = request.POST.get(str(reponse.id), '')
+        listCodesToCheck.append(texte.id)
+        userEntryDropDown = request.POST.get(str(texte.id), 'x')
         try:
             listCodesUserEntryDropDown.append(int(userEntryDropDown))
         except:
