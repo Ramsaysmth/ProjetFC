@@ -6,8 +6,6 @@ from hello.models import MainDataBase, ConfigDataBase, passWordDB, MatchingWords
 def firstScreenSetup(request):
   configdatabaseallentries = ConfigDataBase.objects.all()
   freqCardTarget = request.GET.get('freqCardTarget', 0)
-  print('Méthode firstScreenSetup***********************************')
-  print('freqCardTarget : ', freqCardTarget)
 
   if request.method == 'POST':
     freqCardTarget = request.POST.get('freqCardTarget', 0)
@@ -15,9 +13,6 @@ def firstScreenSetup(request):
         freqCardTarget = 0
     setup = ConfigDataBase.objects.last()
 
-    print('Méthode POST***********************************')
-    print('freqCardTarget : ', freqCardTarget)
-    print('setup : ', setup)
     if setup != None:
       setup.freqCardTarget = freqCardTarget
       setup.save()
@@ -128,12 +123,12 @@ def matchingWordsScreen(request):
     id_select = 0
     screenToBeDisplayed = 'matchingWordsScreen.html'
     matchingwordsdbAllEntries = MatchingWordsDB.objects.order_by('?')
+    matchingwordsdbAllEntries2 = MatchingWordsDB.objects.order_by('?')
     listCodesToCheck = list()
     listCodesUserEntryDropDown = list()
 
     for texte in matchingwordsdbAllEntries:
         listCodesToCheck.append(texte.iDTexte)
-    print("listCodesToCheck  =====", listCodesToCheck)
 
     for reponse in matchingwordsdbAllEntries:
         userEntryDropDown = request.POST.get(str(reponse.id), '')
@@ -147,6 +142,7 @@ def matchingWordsScreen(request):
 
     context = {
         'matchingwordsdbAllEntries': matchingwordsdbAllEntries,
+        'matchingwordsdbAllEntries2': matchingwordsdbAllEntries2,
     }
     print("context", context)
 
