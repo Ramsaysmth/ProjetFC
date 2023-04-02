@@ -21,15 +21,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#23/03/2023 - Temporaire - DEB
-#SECRET_KEY = os.environ.get('SECRET_KEY')
-SECRET_KEY = r"zkIekrotPkjdd*78-"
+SECRET_KEY = os.environ.get('SECRET_KEY')
+#23/03/2023 - Temporaire pour le dev- DEB
+#SECRET_KEY = r"zkIekrotPkjdd*78-"
 #23/03/2023 - Temporaire - FIN
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#23/03/2023 - Temporaire - DEB
-#DEBUG = bool(int(os.environ.get('DEBUG', 0)))
+DEBUG = bool(int(os.environ.get('DEBUG', 0)))
+#23/03/2023 - Temporaire pour le dev - DEB
 DEBUG = True
 #23/03/2023 - Temporaire - FIN
 
