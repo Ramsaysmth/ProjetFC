@@ -20,6 +20,4 @@ class passWordDB(models.Model):
 
 class MatchingWordsDB(models.Model):
     texte = models.CharField(max_length=300)
-    #yEnreg = models.CharField(max_length=1)
     reponse = models.CharField(max_length=150, default='')
-    iDTexte = models.IntegerField(blank=False, null=False, default=0)

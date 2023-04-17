@@ -14,6 +14,6 @@ class MainDataBaseAdmin(admin.ModelAdmin):
 
 @admin.register(MatchingWordsDB)
 class MatchingWordsDB(admin.ModelAdmin):
-    list_display = ('texte', 'reponse', 'iDTexte',)
-    ordering = ('iDTexte',)
+    list_display = ('texte', 'reponse',)
+    ordering = ('texte',)
     search_fields = ('texte',)
